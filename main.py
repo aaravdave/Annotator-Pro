@@ -1,18 +1,21 @@
 import pygame
 pygame.init()
 
-width = 600
-height = 600
-pi = 3.141592653589793238462643383279502884197169399375105
+import numpy, cv2, pyautogui, os
+os.environ['SDL_VIDEO_WINDOW_POS'] = '0, 0'
+cv2.imwrite('screen.png', cv2.cvtColor(numpy.array(pyautogui.screenshot()), cv2.COLOR_RGB2BGR))
 
-screen = pygame.display.set_mode((width, height), flags=pygame.NOFRAME)
+width = pygame.display.Info().current_w
+height = pygame.display.Info().current_h
+image = pygame.transform.scale(pygame.image.load('screen.png'), [width, height])
+PI = 3.141592653589793238462643383279502884197169399375105
+
+screen = pygame.display.set_mode((width, height), flags=pygame.NOFRAME | pygame.FULLSCREEN)
 pygame.display.set_caption('Annotator+ Pro')
-pygame.display.set_icon(pygame.image.load('/Users/aaravdave/PycharmProjects/Games/images/LOGO.png'))
 
-tools = list(range(width // 2 - 200, 176, 25)) + list(range(width // 2 + 100, 476, 25))
+tools = list(range(width // 2 - 200, width // 2 - 124, 25)) + list(range(width // 2 + 100, width // 2 + 176, 25))
 coordinates, mouse_x, mouse_y, origin, clicked = [], 0, 0, 0, 0
-current, fill, color, colors = 1, 1, (63, 140, 255), (
-None, None, None, None, None, (63, 140, 255), (255, 66, 122), (44, 255, 102))
+current, fill, color, colors = 1, 1, (63, 140, 255), (None, None, None, None, None, (63, 140, 255), (255, 66, 122), (44, 255, 102))
 can, draw, message = 1, 0, 'Text...'
 
 while True:
@@ -49,7 +52,7 @@ while True:
             elif pygame.key.name(event.key) == 'backspace':
                 message = message[:-1]
 
-    screen.fill((255, 255, 255))
+    screen.blit(image, (0, 0))
     pygame.draw.rect(screen, (0, 0, 0), (width // 2 - 200, -10, 400, 40), 0, 5)
 
     for tool in tools:
@@ -80,25 +83,17 @@ while True:
         if item['tool'] == 1:
             pygame.draw.line(screen, item['color'], (item['ox'], item['oy']), (item['x'], item['y']))
         elif item['tool'] == 2:
-            pygame.draw.polygon(screen, item['color'], (
-            (item['ox'], item['oy']), (item['x'], item['oy']), (item['x'], item['y']), (item['ox'], item['y'])),
-                                item['fill'])
+            pygame.draw.polygon(screen, item['color'], ((item['ox'], item['oy']), (item['x'], item['oy']), (item['x'], item['y']), (item['ox'], item['y'])), item['fill'])
         elif item['tool'] == 3:
-            pygame.draw.arc(screen, item['color'], (
-            item['ox'] if item['ox'] < item['x'] and item['oy'] < item['y'] or item['ox'] < item['x'] and item['y'] <
-                          item['oy'] else item['x'], item['oy'] if item['oy'] < item['y'] else item['y'],
-            abs(item['ox'] - item['x']), abs(item['oy'] - item['y'])), 0, 3 * pi, item['fill'])
+            pygame.draw.arc(screen, item['color'], (item['ox'] if item['ox'] < item['x'] and item['oy'] < item['y'] or item['ox'] < item['x'] and item['y'] < item['oy'] else item['x'], item['oy'] if item['oy'] < item['y'] else item['y'], abs(item['ox'] - item['x']), abs(item['oy'] - item['y'])), 0, 3 * PI, item['fill'])
         elif item['tool'] == 4:
-            screen.blit(
-                pygame.font.Font('/System/Library/Fonts/Avenir.ttc', 32).render(item['message'], False, item['color']),
-                (item['ox'], item['oy']))
+            screen.blit(pygame.font.Font('/System/Library/Fonts/Avenir.ttc', 32).render(item['message'], False, item['color']), (item['ox'], item['oy']))
     if draw and not mouse_y < 30:
         coordinates[-1] = {'ox': origin[0], 'oy': origin[1], 'x': mouse_x, 'y': mouse_y, 'fill': fill, 'color': color,
                            'tool': current, 'message': message}
     if current == 4 and message != 'Text...':
         coordinates[-1]['message'] = message
-        rect = pygame.font.Font('/System/Library/Fonts/Avenir.ttc', 32).render(item['message'], False,
-                                                                               item['color']).get_rect()
+        rect = pygame.font.Font('/System/Library/Fonts/Avenir.ttc', 32).render(item['message'], False, item['color']).get_rect()
         pygame.draw.rect(screen, (0, 0, 0), (coordinates[-1]['ox'] + rect.width, coordinates[-1]['oy'], 2, rect.height))
 
     pygame.display.update()
