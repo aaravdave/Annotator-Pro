@@ -1,7 +1,7 @@
 # Annotator+ Pro
 
 ## Installation
-To install, go to our <a href="annotator.aaravdave1.repl.co">website</a>.
+To install, go to our <a href="https://www.annotator.aaravdave1.repl.co">website</a>.
 
 ## Launch
 To launch the application, go to your terminal and type this:
