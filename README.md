@@ -1,4 +1,4 @@
-# Annotator+ Pro
+# Annotator+ Pro 2.0
 
 ## Installation
 To install, go to our <a href="https://annotator.aaravdave1.repl.co">website</a>.
