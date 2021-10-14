@@ -76,7 +76,7 @@ while True:
     pygame.draw.line(screen, (255, 255, 255), (width // 2 - 190, 10), (width / 2 - 185, 20), 2)
     pygame.draw.rect(screen, (255, 255, 255), (width // 2 - 168, 10, 10, 10), 2)
     pygame.draw.circle(screen, (255, 255, 255), (width // 2 - 137, 16), 5, 2)
-    screen.blit(pygame.font.Font('/System/Library/Fonts/Avenir Next.ttc', 16).render('T', False, (255, 255, 255)),
+    screen.blit(pygame.font.Font('Avenir Next.ttc', 16).render('T', False, (255, 255, 255)),
                 (width // 2 - 117, 5))
 
     for item in coordinates:
@@ -87,13 +87,13 @@ while True:
         elif item['tool'] == 3:
             pygame.draw.arc(screen, item['color'], (item['ox'] if item['ox'] < item['x'] and item['oy'] < item['y'] or item['ox'] < item['x'] and item['y'] < item['oy'] else item['x'], item['oy'] if item['oy'] < item['y'] else item['y'], abs(item['ox'] - item['x']), abs(item['oy'] - item['y'])), 0, 3 * PI, item['fill'])
         elif item['tool'] == 4:
-            screen.blit(pygame.font.Font('/System/Library/Fonts/Avenir.ttc', 32).render(item['message'], False, item['color']), (item['ox'], item['oy']))
+            screen.blit(pygame.font.Font('Avenir.ttc', 32).render(item['message'], False, item['color']), (item['ox'], item['oy']))
     if draw and not mouse_y < 30:
         coordinates[-1] = {'ox': origin[0], 'oy': origin[1], 'x': mouse_x, 'y': mouse_y, 'fill': fill, 'color': color,
                            'tool': current, 'message': message}
     if current == 4 and message != 'Text...':
         coordinates[-1]['message'] = message
-        rect = pygame.font.Font('/System/Library/Fonts/Avenir.ttc', 32).render(item['message'], False, item['color']).get_rect()
+        rect = pygame.font.Font('Avenir.ttc', 32).render(item['message'], False, item['color']).get_rect()
         pygame.draw.rect(screen, (0, 0, 0), (coordinates[-1]['ox'] + rect.width, coordinates[-1]['oy'], 2, rect.height))
 
     pygame.display.update()
