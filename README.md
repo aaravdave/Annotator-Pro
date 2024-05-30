@@ -1,12 +1,17 @@
 # Annotator Pro
 
 ## Installation
-To install, go to our <a href="https://annotator.aaravdave1.repl.co">website</a>.
+Install the files in this GitHub repository. Please ensure you have Python 3.7 or above on your system.
+Install `pygame`, `numpy`, `opencv-python`, and `pyautogui`. To install pip packages:
+```
+pip3 install pygame
+pip3 install numpy
+pip3 install opencv-python
+pip3 install pyautogui
+```
 
 ## Launch
-To launch the application, go to your terminal and type this:
+To launch the application, type this command in the directory of the file `main.py`:
 ```
-python3 main.py
+> python3 main.py
 ```
-Make sure your python interpreter is 3.7 or above and has `pygame`, `numpy`, `opencv-python`, and `pyautogui` installed.
-> We support any operating system, though Windows has not been tested.
