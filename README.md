@@ -1,17 +1,20 @@
 # Annotator Pro
 
-## Installation
-Install the files in this GitHub repository. Please ensure you have Python 3.7 or above on your system.
-Install `pygame`, `numpy`, `opencv-python`, and `pyautogui`. To install pip packages:
-```
-pip3 install pygame
-pip3 install numpy
-pip3 install opencv-python
-pip3 install pyautogui
-```
-
-## Launch
-To launch the application, type this command in the directory of the file `main.py`:
-```
+## Setup
+Clone this repository and ensure you have installed Python 3.7+ and all dependencies on your system.
+```commandline
+> git clone https://github.com/aaravdave/Annotator-Pro.git
+> cd [FILE DIRECTORY]
+> pip install -r requirements.txt
 > python3 main.py
 ```
+
+## License
+
+This project is licensed under the MIT License, which allows for open use, modification, and distribution. For more details, please refer to the [LICENSE](LICENSE) file.
+
+### Contributions
+Contributions are welcome and encouraged in the form of pull requests.
+
+## Contact
+Please contact aaravhdave[at]gmail.com for correspondence regarding Annotator Pro.
