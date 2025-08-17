@@ -13,7 +13,7 @@ Clone this repository and ensure you have installed Python 3.7+ and all dependen
 
 This project is licensed under the MIT License, which allows for open use, modification, and distribution. For more details, please refer to the [LICENSE](LICENSE) file.
 
-### Contributions
+## Contributions
 Contributions are welcome and encouraged in the form of pull requests.
 
 ## Contact
